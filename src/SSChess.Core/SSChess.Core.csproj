@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\GamePlay\Board.cs" />
+    <Compile Include="Model\GamePlay\File.cs" />
     <Compile Include="Model\GamePlay\Game.cs" />
     <Compile Include="Model\GamePlay\Move.cs" />
     <Compile Include="Model\GamePlay\Piece.cs" />
