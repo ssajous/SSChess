@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -41,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Model\GamePlay\Board.cs" />
     <Compile Include="Model\GamePlay\BoardFile.cs" />
+    <Compile Include="Model\GamePlay\ChessColor.cs" />
     <Compile Include="Model\GamePlay\Game.cs" />
     <Compile Include="Model\GamePlay\Move.cs" />
     <Compile Include="Model\GamePlay\Piece.cs" />
