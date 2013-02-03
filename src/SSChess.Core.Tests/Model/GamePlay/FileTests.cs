@@ -73,7 +73,7 @@ namespace SSChess.Core.Tests.Model.GamePlay
         {
             int index = 0;
 
-            for (index = 0; index < 9; index++)
+            for (index = 1; index < 9; index++)
             {
                 var sut = new File(index);
                 sut.Should().NotBeNull();
@@ -130,7 +130,7 @@ namespace SSChess.Core.Tests.Model.GamePlay
             int index = 0;
             var sut = InitializeSut();
 
-            for (index = 0; index < 9; index++)
+            for (index = 1; index < 9; index++)
             {
                 sut.Index = index;
                 sut.Index.Should().Be(index);
@@ -147,6 +147,32 @@ namespace SSChess.Core.Tests.Model.GamePlay
             {
                 sut.Name = name;
                 sut.Name.Should().Be(name);
+            }
+        }
+
+        [Test]
+        public void Index_Set_Sets_Name()
+        {
+            char name = 'a';
+            var sut = InitializeSut();
+            for (int index = 1; index < 9; index++)
+            {
+                sut.Index = index;
+                sut.Name.Should().Be(name);
+                name++;
+            }
+        }
+
+        [Test]
+        public void Name_Set_Sets_Index()
+        {
+            int index = 1;
+            var sut = InitializeSut();
+            for (char name = 'a'; name < 'i'; name++)
+            {
+                sut.Name = name;
+                sut.Index.Should().Be(index);
+                index++;
             }
         }
     }

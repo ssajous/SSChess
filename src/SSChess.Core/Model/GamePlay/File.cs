@@ -13,25 +13,74 @@ namespace SSChess.Core.Model.GamePlay
         public const char MaxName = 'h';
         public const char MinName = 'a';
 
+        private char _name;
+        private int _index;
+
         public char Name 
-        { 
-            get; 
-            set; 
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if (value < MinName || value > MaxName)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                _name = value;
+                TranslateNameToIndex(_name);
+            }
         }
+        
         public int Index 
-        { 
-            get; 
-            set; 
+        {
+            get
+            {
+                return _index;
+            }
+            set 
+            {
+                if (value < MinIndex || value > MaxIndex)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
+                _index = value;
+                TranslateIndexToName(Index);
+            }
         }
 
         public File(int index)
         {
+            if (index < MinIndex || index > MaxIndex) throw new ArgumentOutOfRangeException("index");
 
+            Index = index;
         }
 
         public File(char name)
         {
+            if (name < MinName || name > MaxName) throw new ArgumentOutOfRangeException("name");
 
+            Name = name;
         }
+
+        private void TranslateIndexToName(int index)
+        {
+            int offset = index - MinIndex;
+            char newName = MinName;
+
+            for (int i = 0; i < offset; i++)
+            {
+                newName++;
+            }
+            _name = newName;
+        }
+
+        private void TranslateNameToIndex(char name)
+        {
+            int offset = ((int)name) - ((int)MinName);
+            _index = MinIndex + offset;
+        }
+
     }
 }

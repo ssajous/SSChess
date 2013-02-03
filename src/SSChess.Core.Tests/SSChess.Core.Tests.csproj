@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\GamePlay\BoardTests.cs" />
+    <Compile Include="Model\GamePlay\FileTests.cs" />
     <Compile Include="Model\GamePlay\GameTests.cs" />
     <Compile Include="Model\GamePlay\MoveTests.cs" />
     <Compile Include="Model\GamePlay\PieceTests.cs" />
@@ -57,6 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SSChess.Core\SSChess.Core.csproj">
+      <Project>{4ec5f0d0-19c7-41d7-85c6-aeafd13334ba}</Project>
+      <Name>SSChess.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
