@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SSChess.Core.Model.GamePlay
 {
-    public class File
+    public class BoardFile
     {
         public const int MaxIndex = 8;
         public const int MinIndex = 1;
@@ -50,14 +50,14 @@ namespace SSChess.Core.Model.GamePlay
             }
         }
 
-        public File(int index)
+        public BoardFile(int index)
         {
             if (index < MinIndex || index > MaxIndex) throw new ArgumentOutOfRangeException("index");
 
             Index = index;
         }
 
-        public File(char name)
+        public BoardFile(char name)
         {
             if (name < MinName || name > MaxName) throw new ArgumentOutOfRangeException("name");
 

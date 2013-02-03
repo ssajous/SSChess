@@ -49,11 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\GamePlay\BoardTests.cs" />
-    <Compile Include="Model\GamePlay\FileTests.cs" />
+    <Compile Include="Model\GamePlay\BoardFileTests.cs" />
     <Compile Include="Model\GamePlay\GameTests.cs" />
     <Compile Include="Model\GamePlay\MoveTests.cs" />
     <Compile Include="Model\GamePlay\PieceTests.cs" />
     <Compile Include="Model\GamePlay\PlayerTests.cs" />
+    <Compile Include="Model\GamePlay\PositionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

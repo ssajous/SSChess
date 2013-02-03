@@ -10,12 +10,12 @@ using FluentAssertions;
 namespace SSChess.Core.Tests.Model.GamePlay
 {
     [TestFixture]
-    public class FileTests
+    public class BoardFileTests
     {
 
-        private File InitializeSut()
+        private BoardFile InitializeSut()
         {
-            return new File(1);
+            return new BoardFile(1);
         }
 
         [Test, Category("Constructor")]
@@ -23,7 +23,7 @@ namespace SSChess.Core.Tests.Model.GamePlay
         {
             char badFile = 'k';
 
-            Action action = () => new File(badFile);
+            Action action = () => new BoardFile(badFile);
 
             action.ShouldThrow<ArgumentOutOfRangeException>();
         }
@@ -33,7 +33,7 @@ namespace SSChess.Core.Tests.Model.GamePlay
         {
             int badFile = 11;
 
-            Action action = () => new File(badFile);
+            Action action = () => new BoardFile(badFile);
 
             action.ShouldThrow<ArgumentOutOfRangeException>();
         }
@@ -43,7 +43,7 @@ namespace SSChess.Core.Tests.Model.GamePlay
         {
             char badFile = 'A'; // capital is no good
 
-            Action action = () => new File(badFile);
+            Action action = () => new BoardFile(badFile);
 
             action.ShouldThrow<ArgumentOutOfRangeException>();
         }
@@ -53,7 +53,7 @@ namespace SSChess.Core.Tests.Model.GamePlay
         {
             int badFile = -1;
 
-            Action action = () => new File(badFile);
+            Action action = () => new BoardFile(badFile);
 
             action.ShouldThrow<ArgumentOutOfRangeException>();
         }
@@ -63,7 +63,7 @@ namespace SSChess.Core.Tests.Model.GamePlay
         {
             char name = 'c';
 
-            var sut = new File(name);
+            var sut = new BoardFile(name);
 
             sut.Should().NotBeNull();
         }
@@ -75,7 +75,7 @@ namespace SSChess.Core.Tests.Model.GamePlay
 
             for (index = 1; index < 9; index++)
             {
-                var sut = new File(index);
+                var sut = new BoardFile(index);
                 sut.Should().NotBeNull();
             }
         }
