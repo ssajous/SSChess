@@ -77,7 +77,7 @@ namespace SSChess.Core.Tests.Model.GamePlay
         {
             var sut = new Position("d4");
             var result = sut.GetAdjacentPositions();
-            result.Count.Should().Be(3);
+            result.Count.Should().Be(8);
         }
 
         [Test]
@@ -168,6 +168,101 @@ namespace SSChess.Core.Tests.Model.GamePlay
                 var result = sut.GetCurrentFilePositions();
                 result.Count.Should().Be(8);
             }
+        }
+
+        [Test]
+        public void SquareColor_A1_Returns_Black()
+        {
+            var sut = new Position("a1");
+
+            ChessColor result = sut.SquareColor;
+            result.Should().Be(ChessColor.Black);
+        }
+
+        [Test]
+        public void SquareColor_H1_Returns_White()
+        {
+            var sut = new Position("h1");
+
+            ChessColor result = sut.SquareColor;
+            result.Should().Be(ChessColor.White);
+        }
+
+        [Test]
+        public void SquareColor_H8_Returns_Black()
+        {
+            var sut = new Position("h8");
+
+            ChessColor result = sut.SquareColor;
+            result.Should().Be(ChessColor.Black);
+        }
+
+        [Test]
+        public void GetCurrentDiagonalPositions_Central_White_Returns_Correct_Squares()
+        {
+            var sut = new Position("d5");
+            List<Position> result = sut.GetCurrentDiagonalPositions();
+
+            var actual = result.Select(pos => pos.ToString());
+            actual.Should().Contain("a2");
+            actual.Should().Contain("b3");
+            actual.Should().Contain("c4");
+            actual.Should().Contain("d5");
+            actual.Should().Contain("e6");
+            actual.Should().Contain("f7");
+            actual.Should().Contain("g8");
+        }
+
+        [Test]
+        public void GetCurrentDiagonalPositions_Central_Black_Returns_Correct_Squares()
+        {
+            var sut = new Position("e5");
+            List<Position> result = sut.GetCurrentDiagonalPositions();
+
+            var actual = result.Select(pos => pos.ToString());
+            actual.Should().Contain("a1");
+            actual.Should().Contain("b2");
+            actual.Should().Contain("c3");
+            actual.Should().Contain("d4");
+            actual.Should().Contain("e5");
+            actual.Should().Contain("f6");
+            actual.Should().Contain("g7");
+            actual.Should().Contain("h8");
+        }
+
+        [Test]
+        public void GetCurrentDiagonalPositions_Edge_White_Returns_Correct_Squares()
+        {
+            var sut = new Position("a4");
+            List<Position> result = sut.GetCurrentDiagonalPositions();
+
+            var actual = result.Select(pos => pos.ToString());
+            actual.Should().Contain("a4");
+            actual.Should().Contain("b3");
+            actual.Should().Contain("c2");
+            actual.Should().Contain("d1");
+        }
+
+        [Test]
+        public void GetCurrentDiagonalPositions_Edge_Black_Returns_Correct_Squares()
+        {
+            var sut = new Position("g7");
+            List<Position> result = sut.GetCurrentDiagonalPositions();
+
+            var actual = result.Select(pos => pos.ToString());
+            actual.Should().Contain("f8");
+            actual.Should().Contain("g7");
+            actual.Should().Contain("h6");
+        }
+
+
+        [Test]
+        public void SquareColor_E4_Returns_White()
+        {
+            var sut = new Position("e4");
+
+            ChessColor result = sut.SquareColor;
+            result.Should().Be(ChessColor.White);
         }
     }
 }

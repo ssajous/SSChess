@@ -138,6 +138,110 @@ namespace SSChess.Core.Model.GamePlay
             return string.Format("{0}{1}", File.Name, Rank);
         }
 
-        
+        public ChessColor SquareColor
+        {
+            get
+            {
+                if ((Rank + File.Index) % 2 == 0)
+                {
+                    return ChessColor.Black;
+                }
+                else
+                {
+                    return ChessColor.White;
+                }
+            }
+        }
+
+        public List<Position> GetCurrentDiagonalPositions()
+        {
+            List<Position> positions = new List<Position>();
+            
+            positions.Add(this);
+            
+            AddLowerLeftDiagonals(positions);
+            AddLowerRightDiagonals(positions);
+            AddUpperLeftDiagonals(positions);
+            AddUpperRightDiagonals(positions);
+
+
+            return positions;
+        }
+
+        private void AddUpperRightDiagonals(List<Position> positions)
+        {
+            int currentRank;
+            BoardFile currentFile;
+
+            if (Rank < MaxRank && File.Index < BoardFile.MaxIndex)
+            {
+                currentRank = Rank + 1;
+                currentFile = File.NextFile();
+
+                while (currentRank <= MaxRank && currentFile != null)
+                {
+                    positions.Add(new Position(currentRank, currentFile));
+                    currentRank++;
+                    currentFile = currentFile.NextFile();
+                }
+            }
+        }
+
+        private void AddUpperLeftDiagonals(List<Position> positions)
+        {
+            int currentRank;
+            BoardFile currentFile;
+
+            if (Rank < MaxRank && File.Index > BoardFile.MinIndex)
+            {
+                currentRank = Rank + 1;
+                currentFile = File.PreviousFile();
+
+                while (currentRank <= MaxRank && currentFile != null)
+                {
+                    positions.Add(new Position(currentRank, currentFile));
+                    currentRank++;
+                    currentFile = currentFile.PreviousFile();
+                }
+            }
+        }
+
+        private void AddLowerRightDiagonals(List<Position> positions)
+        {
+            int currentRank;
+            BoardFile currentFile;
+
+            if (Rank > MinRank && File.Index < BoardFile.MaxIndex)
+            {
+                currentRank = Rank - 1;
+                currentFile = File.NextFile();
+
+                while (currentRank >= MinRank && currentFile != null)
+                {
+                    positions.Add(new Position(currentRank, currentFile));
+                    currentRank--;
+                    currentFile = currentFile.NextFile();
+                }
+            }
+        }
+
+        private void AddLowerLeftDiagonals(List<Position> positions)
+        {
+            int currentRank;
+            BoardFile currentFile;
+
+            if (Rank > MinRank && File.Index > BoardFile.MinIndex)
+            {
+                currentRank = Rank - 1;
+                currentFile = File.PreviousFile();
+
+                while (currentRank >= MinRank && currentFile != null)
+                {
+                    positions.Add(new Position(currentRank, currentFile));
+                    currentRank--;
+                    currentFile = currentFile.PreviousFile();
+                }
+            }
+        }
     }
 }
