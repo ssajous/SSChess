@@ -243,5 +243,48 @@ namespace SSChess.Core.Model.GamePlay
                 }
             }
         }
+
+        public List<Position> GetLMovePositions()
+        {
+            List<Position> positions = new List<Position>();
+
+            AddRankLMovePositions(positions, Rank + 2);
+            AddRankLMovePositions(positions, Rank - 2);
+
+            AddFileLMovePositions(positions, File.Index + 2);
+            AddFileLMovePositions(positions, File.Index - 2);
+
+            return positions;
+        }
+
+        private void AddFileLMovePositions(List<Position> positions, int targetIndex)
+        {
+            if (targetIndex <= BoardFile.MaxIndex && targetIndex >= BoardFile.MinIndex)
+            {
+                if (Rank < MaxRank)
+                {
+                    positions.Add(new Position(Rank + 1, new BoardFile(targetIndex)));
+                }
+                if (Rank > MinRank)
+                {
+                    positions.Add(new Position(Rank - 1, new BoardFile(targetIndex)));
+                }
+            }
+        }
+
+        private void AddRankLMovePositions(List<Position> positions, int targetRank)
+        {
+            if (targetRank <= MaxRank && targetRank >= MinRank)
+            {
+                if (File.Index < BoardFile.MaxIndex)
+                {
+                    positions.Add(new Position(targetRank, new BoardFile(File.Index + 1)));
+                }
+                if (File.Index > BoardFile.MinIndex)
+                {
+                    positions.Add(new Position(targetRank, new BoardFile(File.Index - 1)));
+                }
+            }
+        }
     }
 }

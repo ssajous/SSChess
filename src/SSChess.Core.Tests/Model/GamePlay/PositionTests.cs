@@ -264,5 +264,71 @@ namespace SSChess.Core.Tests.Model.GamePlay
             ChessColor result = sut.SquareColor;
             result.Should().Be(ChessColor.White);
         }
+
+        [Test]
+        public void GetLMovePositions_Center_Returns_Correct_Squares()
+        {
+            var sut = new Position("e4");
+            List<Position> result = sut.GetLMovePositions();
+            var actual = result.Select(pos => pos.ToString());
+
+            actual.Count().Should().Be(8);
+            actual.Should().Contain("g3");
+            actual.Should().Contain("f2");
+            actual.Should().Contain("d2");
+            actual.Should().Contain("c3");
+            actual.Should().Contain("c5");
+            actual.Should().Contain("d6");
+            actual.Should().Contain("f6");
+            actual.Should().Contain("g5");
+        }
+
+        [Test]
+        public void GetLMovePositions_Bottom_Left_Returns_Correct_Squares()
+        {
+            var sut = new Position("a1");
+            var result = sut.GetLMovePositions();
+            var actual = result.Select(pos => pos.ToString());
+
+            actual.Count().Should().Be(2);
+            actual.Should().Contain("b3");
+            actual.Should().Contain("c2");
+        }
+
+        [Test]
+        public void GetLMovePositions_Bottom_Right_Returns_Correct_Squares()
+        {
+            var sut = new Position("h1");
+            var result = sut.GetLMovePositions();
+            var actual = result.Select(pos => pos.ToString());
+
+            actual.Count().Should().Be(2);
+            actual.Should().Contain("f2");
+            actual.Should().Contain("g3");
+        }
+
+        [Test]
+        public void GetLMovePositions_Top_Left_Returns_Correct_Squares()
+        {
+            var sut = new Position("a8");
+            var result = sut.GetLMovePositions();
+            var actual = result.Select(pos => pos.ToString());
+
+            actual.Count().Should().Be(2);
+            actual.Should().Contain("b6");
+            actual.Should().Contain("c7");
+        }
+
+        [Test]
+        public void GetLMovePositions_Top_Right_Returns_Correct_Squares()
+        {
+            var sut = new Position("h8");
+            var result = sut.GetLMovePositions();
+            var actual = result.Select(pos => pos.ToString());
+
+            actual.Count().Should().Be(2);
+            actual.Should().Contain("g6");
+            actual.Should().Contain("f7");
+        }
     }
 }
