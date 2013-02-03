@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace SSChess.Core.Model.GamePlay
@@ -11,12 +12,14 @@ namespace SSChess.Core.Model.GamePlay
         public const int MinRank = 1;
         public const int MaxRank = 8;
 
+        private Regex coordinatePattern = new Regex(@"([a-h])([1-8])");
+
         public int Rank { get; set; }
         public BoardFile File { get; set; }
 
         public Position(string square)
         {
-            throw new NotImplementedException();
+            ParseCoordinate(square);
         }
 
         public Position(int rank, BoardFile file)
@@ -25,14 +28,78 @@ namespace SSChess.Core.Model.GamePlay
             File = file;
         }
 
+        private void ParseCoordinate(string coordinate)
+        {
+            Match match = coordinatePattern.Match(coordinate);
+            if (!match.Success)
+            {
+                throw new ArgumentException();
+            }
+
+            File = new BoardFile(match.Groups[1].Value.ToCharArray()[0]);
+            Rank = int.Parse(match.Groups[2].Value);
+        }
+
         /// <summary>
         /// Provides a list of all positions that are directly 
         /// adjacent to the current position
         /// </summary>
         /// <returns></returns>
-        public List<Position> AdjacentPositions()
+        public List<Position> GetAdjacentPositions()
         {
-            throw new NotImplementedException();
+            List<Position> positions = new List<Position>();
+            BoardFile nextFile = File.NextFile();
+            BoardFile prevFile = File.PreviousFile();
+
+            AddLowerRankPositions(positions, nextFile, prevFile);
+            AddSameRankPositions(positions, nextFile, prevFile);
+            AddHigherRankPositions(positions, nextFile, prevFile);
+
+            return positions;
+        }
+
+        private void AddHigherRankPositions(List<Position> positions, BoardFile nextFile, BoardFile prevFile)
+        {
+            if (Rank < MaxRank)
+            {
+                positions.Add(new Position(Rank + 1, File));
+                if (prevFile != null)
+                {
+                    positions.Add(new Position(Rank + 1, prevFile));
+                }
+                if (nextFile != null)
+                {
+                    positions.Add(new Position(Rank + 1, nextFile));
+                }
+            }
+        }
+
+        private void AddSameRankPositions(List<Position> positions, BoardFile nextFile, BoardFile prevFile)
+        {
+            if (prevFile != null)
+            {
+                positions.Add(new Position(Rank, prevFile));
+            }
+            if (nextFile != null)
+            {
+                positions.Add(new Position(Rank, nextFile));
+            }
+        }
+
+        private void AddLowerRankPositions(List<Position> positions, BoardFile nextFile, BoardFile prevFile)
+        {
+            if (Rank > MinRank)
+            {
+                positions.Add(new Position(Rank - 1, File));
+                if (prevFile != null)
+                {
+                    positions.Add(new Position(Rank - 1, prevFile));
+                }
+                if (nextFile != null)
+                {
+                    positions.Add(new Position(Rank - 1, nextFile));
+                }
+            }
         }
 
         /// <summary>
@@ -40,9 +107,14 @@ namespace SSChess.Core.Model.GamePlay
         /// rank as the current position
         /// </summary>
         /// <returns></returns>
-        public List<Position> CurrentRankPositions()
+        public List<Position> GetCurrentRankPositions()
         {
-            throw new NotImplementedException();
+            List<Position> positions = new List<Position>();
+            for (int i = MinRank; i <= MaxRank; i++)
+            {
+                positions.Add(new Position(i, File));
+            }
+            return positions;
         }
 
         /// <summary>
@@ -50,9 +122,15 @@ namespace SSChess.Core.Model.GamePlay
         /// file as the current position
         /// </summary>
         /// <returns></returns>
-        public List<Position> CurrentFilePositions()
+        public List<Position> GetCurrentFilePositions()
         {
-            throw new NotImplementedException();
+            List<Position> positions = new List<Position>();
+
+            for (BoardFile iter = new BoardFile(BoardFile.MinIndex); iter != null; iter = iter.NextFile())
+            {
+                positions.Add(new Position(Rank, iter));
+            }
+            return positions;
         }
 
         public override string ToString()

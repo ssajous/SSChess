@@ -175,5 +175,37 @@ namespace SSChess.Core.Tests.Model.GamePlay
                 index++;
             }
         }
+
+        [Test]
+        public void NextFile_Returns_Next_File()
+        {
+            var sut = new BoardFile('a');
+            BoardFile result = sut.NextFile();
+            result.Name.Should().Be('b');
+        }
+
+        [Test]
+        public void NextFile_Last_File_Returns_Null()
+        {
+            var sut = new BoardFile('h');
+            BoardFile result = sut.NextFile();
+            result.Should().BeNull();
+        }
+
+        [Test]
+        public void PreviousFile_Returns_Previous_File()
+        {
+            var sut = new BoardFile('h');
+            BoardFile result = sut.PreviousFile();
+            result.Name.Should().Be('g');
+        }
+
+        [Test]
+        public void PreviousFile_First_File_Returns_Null()
+        {
+            var sut = new BoardFile('a');
+            var result = sut.PreviousFile();
+            result.Should().BeNull();
+        }
     }
 }

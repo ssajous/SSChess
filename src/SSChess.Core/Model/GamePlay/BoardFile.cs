@@ -82,5 +82,27 @@ namespace SSChess.Core.Model.GamePlay
             _index = MinIndex + offset;
         }
 
+
+        public BoardFile NextFile()
+        {
+            BoardFile result = null;
+
+            if (Index < MaxIndex)
+            {
+                result = new BoardFile(Index + 1);
+            }
+            return result;
+        }
+
+        public BoardFile PreviousFile()
+        {
+            BoardFile result = null;
+
+            if (Index > MinIndex)
+            {
+                result = new BoardFile(Index - 1);
+            }
+            return result;
+        }
     }
 }
