@@ -286,5 +286,20 @@ namespace SSChess.Core.Model.GamePlay
                 }
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            Position compare = obj as Position;
+            if (compare == null)
+            {
+                return false;
+            }
+            return Rank == compare.Rank && File.Index == compare.File.Index;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.ToString().GetHashCode();
+        }
     }
 }

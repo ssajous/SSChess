@@ -330,5 +330,59 @@ namespace SSChess.Core.Tests.Model.GamePlay
             actual.Should().Contain("g6");
             actual.Should().Contain("f7");
         }
+
+        [Test]
+        public void Equals_Two_Positions_Same_Rank_And_File_Should_Be_Equal()
+        {
+            var sut = InitializeSut();
+            var compare = new Position("a1");
+
+            sut.Equals(compare).Should().BeTrue();
+        }
+
+        [Test]
+        public void Equals_Two_Positions_Different_Rank_Same_File_Should_Not_Be_Equal()
+        {
+            var sut = InitializeSut();
+            var compare = new Position("a2");
+
+            sut.Equals(compare).Should().BeFalse();
+        }
+
+        [Test]
+        public void Equals_Two_Positions_Same_Rank_Different_File_Should_Not_Be_Equal()
+        {
+            var sut = InitializeSut();
+            var compare = new Position("d1");
+
+            sut.Equals(compare).Should().BeFalse();
+        }
+
+        [Test]
+        public void Equals_Two_Positions_Different_Rank_And_File_Should_Not_Be_Equal()
+        {
+            var sut = InitializeSut();
+            var compare = new Position("d5");
+
+            sut.Equals(compare).Should().BeFalse();
+        }
+
+        [Test]
+        public void Equals_Non_Position_Object_Should_Be_False()
+        {
+            var sut = InitializeSut();
+
+            sut.Equals(20).Should().BeFalse();
+        }
+
+        [Test]
+        public void GetHashCode_Should_Be_Same_As_Coordinate_HashCode()
+        {
+            var sut = InitializeSut();
+            sut.Rank = 1;
+            sut.File = new BoardFile('a');
+
+            sut.GetHashCode().Should().Be("a1".GetHashCode());
+        }
     }
 }
