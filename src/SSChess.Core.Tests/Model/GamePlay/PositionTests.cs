@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SSChess.Core.Tests.Model.GamePlay
+namespace SSChess.Core.Tests.Model.Gameplay
 {
     [TestFixture]
     public class PositionTests

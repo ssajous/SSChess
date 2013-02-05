@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
 
-namespace SSChess.Core.Tests.Model.GamePlay
+namespace SSChess.Core.Tests.Model.Gameplay
 {
     [TestFixture]
     public class BoardFileTests

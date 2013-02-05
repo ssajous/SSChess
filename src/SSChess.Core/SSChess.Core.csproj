@@ -40,21 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\GamePlay\Bishop.cs" />
-    <Compile Include="Model\GamePlay\Board.cs" />
-    <Compile Include="Model\GamePlay\BoardFile.cs" />
-    <Compile Include="Model\GamePlay\ChessColor.cs" />
-    <Compile Include="Model\GamePlay\Game.cs" />
-    <Compile Include="Model\GamePlay\King.cs" />
-    <Compile Include="Model\GamePlay\Knight.cs" />
-    <Compile Include="Model\GamePlay\Move.cs" />
-    <Compile Include="Model\GamePlay\Pawn.cs" />
-    <Compile Include="Model\GamePlay\Piece.cs" />
-    <Compile Include="Model\GamePlay\Player.cs" />
-    <Compile Include="Model\GamePlay\Position.cs" />
-    <Compile Include="Model\GamePlay\Queen.cs" />
-    <Compile Include="Model\GamePlay\Rook.cs" />
-    <Compile Include="Model\GamePlay\StartingPositions.cs" />
+    <Compile Include="Model\Gameplay\Bishop.cs" />
+    <Compile Include="Model\Gameplay\Board.cs" />
+    <Compile Include="Model\Gameplay\BoardFile.cs" />
+    <Compile Include="Model\Gameplay\ChessColor.cs" />
+    <Compile Include="Model\Gameplay\ChessSquare.cs" />
+    <Compile Include="Model\Gameplay\Game.cs" />
+    <Compile Include="Model\Gameplay\King.cs" />
+    <Compile Include="Model\Gameplay\Knight.cs" />
+    <Compile Include="Model\Gameplay\Move.cs" />
+    <Compile Include="Model\Gameplay\Pawn.cs" />
+    <Compile Include="Model\Gameplay\Piece.cs" />
+    <Compile Include="Model\Gameplay\Player.cs" />
+    <Compile Include="Model\Gameplay\Position.cs" />
+    <Compile Include="Model\Gameplay\Queen.cs" />
+    <Compile Include="Model\Gameplay\Rook.cs" />
+    <Compile Include="Model\Gameplay\StartingPositions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
