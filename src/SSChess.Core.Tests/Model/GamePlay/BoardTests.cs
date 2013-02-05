@@ -12,18 +12,40 @@ namespace SSChess.Core.Tests
     [TestFixture]
     public class BoardTests
     {
+        private Board InitializeSut()
+        {
+            return new Board();
+        }
+
         [Test]
         public void Constructor_Initializes_Squares()
         {
-            var sut = new Board();
+            var sut = InitializeSut();
 
             sut.Squares.Should().NotBeNull();
         }
 
         [Test]
+        public void Constructor_Initializes_Pieces()
+        {
+            var sut = InitializeSut();
+
+            sut.Pieces.Should().NotBeNull();
+        }
+
+        [Test]
+        public void SetupStartingPieces_Should_Have_32_Pieces()
+        {
+            var sut = InitializeSut();
+            sut.SetupStartingPieces();
+
+            sut.Pieces.Count.Should().Be(32);
+        }
+
+        [Test]
         public void Constructor_Initializes_With_64_Squares()
         {
-            var sut = new Board();
+            var sut = InitializeSut();
 
             sut.Squares.Count.Should().Be(64);
         }

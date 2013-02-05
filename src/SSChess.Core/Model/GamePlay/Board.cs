@@ -13,10 +13,13 @@ namespace SSChess.Core.Model.GamePlay
         public Board()
         {
             Squares = new List<Position>(NumberOfSquares);
+            Pieces = new List<Piece>();
+
             InitializeSquares();
         }
 
         public List<Position> Squares { get; private set; }
+        public List<Piece> Pieces { get; private set; }
 
         private void InitializeSquares()
         {
@@ -27,6 +30,11 @@ namespace SSChess.Core.Model.GamePlay
                     Squares.Add(new Position(rank, new BoardFile(file)));
                 });
             });
+        }
+
+        public void SetupStartingPieces()
+        {
+            throw new NotImplementedException();
         }
     }
 }
