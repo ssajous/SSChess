@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace SSChess.Core.Model.GamePlay
+namespace SSChess.Core.Model.Gameplay
 {
     public class Position
     {

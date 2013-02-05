@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SSChess.Core.Model.GamePlay;
+using SSChess.Core.Model.Gameplay;
 using System;
 using System.Collections.Generic;
 using System.Linq;

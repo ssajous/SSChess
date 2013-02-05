@@ -6,12 +6,9 @@ using System.Threading.Tasks;
 
 namespace SSChess.Core.Model.Gameplay
 {
-    public class King : Piece
+    public class ChessSquare
     {
-
-        protected override int GetValue()
-        {
-            return 0;
-        }
+        public Position BoardPosition { get; set; }
+        public Piece OccupyingPiece { get; set; }
     }
 }
