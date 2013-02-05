@@ -10,5 +10,13 @@ namespace SSChess.Core.Model.Gameplay
     {
         public Position BoardPosition { get; set; }
         public Piece OccupyingPiece { get; set; }
+
+        public bool IsOccupied
+        {
+            get
+            {
+                return OccupyingPiece != null;
+            }
+        }
     }
 }

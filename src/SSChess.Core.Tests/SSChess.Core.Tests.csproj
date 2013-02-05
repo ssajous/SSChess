@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Model\Gameplay\BoardTests.cs" />
     <Compile Include="Model\Gameplay\BoardFileTests.cs" />
+    <Compile Include="Model\Gameplay\ChessSquareTests.cs" />
     <Compile Include="Model\Gameplay\GameTests.cs" />
     <Compile Include="Model\Gameplay\MoveTests.cs" />
     <Compile Include="Model\Gameplay\PieceTests.cs" />
