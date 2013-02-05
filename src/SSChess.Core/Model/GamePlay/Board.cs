@@ -12,13 +12,16 @@ namespace SSChess.Core.Model.GamePlay
 
         public Board()
         {
-            Squares = new List<Position>(NumberOfSquares);
+            Squares = new Dictionary<string, Position>(NumberOfSquares);
             Pieces = new List<Piece>();
 
             InitializeSquares();
         }
 
-        public List<Position> Squares { get; private set; }
+        /// <summary>
+        /// IDictionary of squares on the board, indexed by their {file letter}{rank number} coordinates
+        /// </summary>
+        public IDictionary<string, Position> Squares { get; private set; }
         public List<Piece> Pieces { get; private set; }
 
         private void InitializeSquares()
@@ -27,7 +30,8 @@ namespace SSChess.Core.Model.GamePlay
             {
                 Parallel.For(BoardFile.MinIndex, BoardFile.MaxIndex + 1, (file) =>
                 {
-                    Squares.Add(new Position(rank, new BoardFile(file)));
+                    Position position = new Position(rank, new BoardFile(file));
+                    Squares.Add(position.ToString(), position);
                 });
             });
         }
@@ -98,33 +102,33 @@ namespace SSChess.Core.Model.GamePlay
 
             // Rooks
             currentPiece = new Rook();
-            AddPieceToBoard(currentPiece, new Position(StartingPositions.BLACK_A_ROOK));
+            AddPieceToBoard(currentPiece, Squares[StartingPositions.BLACK_A_ROOK]);
             currentPiece = new Rook();
-            AddPieceToBoard(currentPiece, new Position(StartingPositions.BLACK_H_ROOK));
+            AddPieceToBoard(currentPiece, Squares[StartingPositions.BLACK_H_ROOK]);
 
             // Knights
             currentPiece = new Knight();
-            AddPieceToBoard(currentPiece, new Position(StartingPositions.BLACK_B_KNIGHT));
+            AddPieceToBoard(currentPiece, Squares[StartingPositions.BLACK_B_KNIGHT]);
             currentPiece = new Knight();
-            AddPieceToBoard(currentPiece, new Position(StartingPositions.BLACK_G_KNIGHT));
+            AddPieceToBoard(currentPiece, Squares[StartingPositions.BLACK_G_KNIGHT]);
 
             // Bishops
             currentPiece = new Bishop();
-            AddPieceToBoard(currentPiece, new Position(StartingPositions.BLACK_LIGHT_BISHOP));
+            AddPieceToBoard(currentPiece, Squares[StartingPositions.BLACK_LIGHT_BISHOP]);
             currentPiece = new Bishop();
-            AddPieceToBoard(currentPiece, new Position(StartingPositions.BLACK_DARK_BISHOP));
+            AddPieceToBoard(currentPiece, Squares[StartingPositions.BLACK_DARK_BISHOP]);
 
             // Royalty
             currentPiece = new King();
-            AddPieceToBoard(currentPiece, new Position(StartingPositions.BLACK_KING));
+            AddPieceToBoard(currentPiece, Squares[StartingPositions.BLACK_KING]);
             currentPiece = new Queen();
-            AddPieceToBoard(currentPiece, new Position(StartingPositions.BLACK_QUEEN));
+            AddPieceToBoard(currentPiece, Squares[StartingPositions.BLACK_QUEEN]);
         }
 
         private void CreatePawnAtPosition(string position)
         {
             Pawn pawn = new Pawn();
-            AddPieceToBoard(pawn, new Position(position));
+            AddPieceToBoard(pawn, Squares[position]);
         }
     }
 }
