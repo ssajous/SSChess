@@ -48,6 +48,7 @@
     <Compile Include="Model\GamePlay\Piece.cs" />
     <Compile Include="Model\GamePlay\Player.cs" />
     <Compile Include="Model\GamePlay\Position.cs" />
+    <Compile Include="Model\GamePlay\StartingPositions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
