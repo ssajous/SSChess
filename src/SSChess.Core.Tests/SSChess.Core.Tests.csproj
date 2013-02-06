@@ -48,14 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Gameplay\BishopTests.cs" />
     <Compile Include="Model\Gameplay\BoardTests.cs" />
     <Compile Include="Model\Gameplay\BoardFileTests.cs" />
     <Compile Include="Model\Gameplay\ChessSquareTests.cs" />
     <Compile Include="Model\Gameplay\GameTests.cs" />
+    <Compile Include="Model\Gameplay\KingTests.cs" />
+    <Compile Include="Model\Gameplay\KnightTests.cs" />
     <Compile Include="Model\Gameplay\MoveTests.cs" />
+    <Compile Include="Model\Gameplay\PawnTests.cs" />
     <Compile Include="Model\Gameplay\PieceTests.cs" />
     <Compile Include="Model\Gameplay\PlayerTests.cs" />
     <Compile Include="Model\Gameplay\PositionTests.cs" />
+    <Compile Include="Model\Gameplay\QueenTests.cs" />
+    <Compile Include="Model\Gameplay\RookTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
