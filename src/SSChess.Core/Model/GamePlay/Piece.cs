@@ -21,5 +21,15 @@ namespace SSChess.Core.Model.Gameplay
         }
 
         protected abstract int GetValue();
+
+        public IEnumerable<Move> AvailableMoves
+        {
+            get
+            {
+                return GetAvailableMoves();
+            }
+        }
+
+        protected abstract IEnumerable<Move> GetAvailableMoves();
     }
 }
