@@ -24,25 +24,28 @@ namespace SSChess.Core.Model.Gameplay
             Position captureLeft = GetLeftCapturePosition();
             Position captureRight = GetRightCapturePosition();
 
-            bool isForwardBlocked = Board.Squares[forwardOne.ToString()].IsOccupied;
+            if (forwardOne != null)
+            {
+                bool isForwardBlocked = Board.Squares[forwardOne.ToString()].IsOccupied;
 
-            if (!HasMoved() && !Board.Squares[forwardTwo.ToString()].IsOccupied && !isForwardBlocked)
-            {
-                AddMove(moves, forwardTwo);
+                if (!HasMoved() && !Board.Squares[forwardTwo.ToString()].IsOccupied && !isForwardBlocked)
+                {
+                    AddMove(moves, forwardTwo);
+                }
+                if (!isForwardBlocked)
+                {
+                    AddMove(moves, forwardOne);
+                }
+                if (IsCaptureAvailable(captureLeft))
+                {
+                    AddMove(moves, captureLeft);
+                }
+                if (IsCaptureAvailable(captureRight))
+                {
+                    AddMove(moves, captureRight);
+                }
             }
-            if (!isForwardBlocked)
-            {
-                AddMove(moves, forwardOne);
-            }
-            if (IsCaptureAvailable(captureLeft))
-            {
-                AddMove(moves, captureLeft);
-            }
-            if (IsCaptureAvailable(captureRight))
-            {
-                AddMove(moves, captureRight);
-            }
-           
+
             return moves.AsEnumerable();
         }
 

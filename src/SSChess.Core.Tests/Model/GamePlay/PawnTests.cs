@@ -246,10 +246,97 @@ namespace SSChess.Core.Tests.Model.Gameplay
             result.Should().BeEmpty();
         }
 
+        [Test, Category("AvailableMoves")]
+        public void AvailableMoves_Black_Pawn_Bottom_Rank_Should_Have_No_Moves()
+        {
+            // this situation should result in pawn promotion and thus be moot
+            // but this test is here for coverage of range checking code
+            var sut = InitializeSut();
+            sut.Color = ChessColor.Black;
 
+            Board board = new Board();
+            board.AddPiece(sut, "c1");
 
+            var result = sut.AvailableMoves;
 
+            result.Should().BeEmpty();
+        }
 
+        [Test, Category("AvailableMoves")]
+        public void AvailableMoves_White_Pawn_Top_Rank_Should_Have_No_Moves()
+        {
+            // this situation should result in pawn promotion and thus be moot
+            // but this test is here for coverage of range checking code
+            var sut = InitializeSut();
+            sut.Color = ChessColor.White;
+
+            Board board = new Board();
+            board.AddPiece(sut, "c8");
+
+            var result = sut.AvailableMoves;
+
+            result.Should().BeEmpty();
+        }
+
+        [Test, Category("AvailableMoves")]
+        public void AvailableMoves_White_A_Pawn_Detects_Properly()
+        {
+            // Smoke test to make sure edge detection doesn't go boom
+            var sut = InitializeSut();
+            sut.Color = ChessColor.White;
+
+            Board board = new Board();
+            board.AddPiece(sut, "a7");
+
+            var result = sut.AvailableMoves;
+
+            result.Should().NotBeEmpty();
+        }
+
+        [Test, Category("AvailableMoves")]
+        public void AvailableMoves_White_H_Pawn_Detects_Properly()
+        {
+            // Smoke test to make sure edge detection doesn't go boom
+            var sut = InitializeSut();
+            sut.Color = ChessColor.White;
+
+            Board board = new Board();
+            board.AddPiece(sut, "h7");
+
+            var result = sut.AvailableMoves;
+
+            result.Should().NotBeEmpty();
+        }
+
+        [Test, Category("AvailableMoves")]
+        public void AvailableMoves_Black_A_Pawn_Detects_Properly()
+        {
+            // Smoke test to make sure edge detection doesn't go boom
+            var sut = InitializeSut();
+            sut.Color = ChessColor.Black;
+
+            Board board = new Board();
+            board.AddPiece(sut, "a7");
+
+            var result = sut.AvailableMoves;
+
+            result.Should().NotBeEmpty();
+        }
+
+        [Test, Category("AvailableMoves")]
+        public void AvailableMoves_Black_H_Pawn_Detects_Properly()
+        {
+            // Smoke test to make sure edge detection doesn't go boom
+            var sut = InitializeSut();
+            sut.Color = ChessColor.Black;
+
+            Board board = new Board();
+            board.AddPiece(sut, "h7");
+
+            var result = sut.AvailableMoves;
+
+            result.Should().NotBeEmpty();
+        }
 
     }
 }
