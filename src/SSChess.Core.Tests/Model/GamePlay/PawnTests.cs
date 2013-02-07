@@ -96,6 +96,26 @@ namespace SSChess.Core.Tests.Model.Gameplay
         }
 
         [Test, Category("AvailableMoves")]
+        public void AvailableMoves_White_Pawn_Capture_Move_Should_Contain_Captured_Piece_Reference()
+        {
+            var sut = InitializeSut();
+            sut.Color = ChessColor.White;
+
+            var victim = new Pawn
+            {
+                Color = ChessColor.Black
+            };
+
+            Board board = new Board();
+            board.AddPiece(sut, "c3");
+            board.AddPiece(victim, "b4");
+
+            var result = sut.AvailableMoves;
+
+            result.Where(move => move.EndPosition.ToString() == "b4").First().CapturedPiece.Should().BeSameAs(victim);
+        }
+
+        [Test, Category("AvailableMoves")]
         public void AvailableMoves_White_Blocked_Pawn_Should_Have_No_Moves()
         {
             var sut = InitializeSut();
@@ -154,7 +174,7 @@ namespace SSChess.Core.Tests.Model.Gameplay
 
             var victim = new Pawn
             {
-                Color = ChessColor.Black
+                Color = ChessColor.White
             };
 
             Board board = new Board();
@@ -174,7 +194,7 @@ namespace SSChess.Core.Tests.Model.Gameplay
 
             var victim = new Pawn
             {
-                Color = ChessColor.Black
+                Color = ChessColor.White
             };
 
             Board board = new Board();
@@ -184,6 +204,26 @@ namespace SSChess.Core.Tests.Model.Gameplay
             var result = sut.AvailableMoves;
 
             result.Where(move => move.EndPosition.ToString() == "b4").Should().NotBeEmpty();
+        }
+
+        [Test, Category("AvailableMoves")]
+        public void AvailableMoves_Black_Pawn_Capture_Move_Should_Contain_Captured_Piece_Reference()
+        {
+            var sut = InitializeSut();
+            sut.Color = ChessColor.Black;
+
+            var victim = new Pawn
+            {
+                Color = ChessColor.White
+            };
+
+            Board board = new Board();
+            board.AddPiece(sut, "c5");
+            board.AddPiece(victim, "b4");
+
+            var result = sut.AvailableMoves;
+
+            result.Where(move => move.EndPosition.ToString() == "b4").First().CapturedPiece.Should().BeSameAs(victim);
         }
 
         [Test, Category("AvailableMoves")]

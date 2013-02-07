@@ -48,11 +48,17 @@ namespace SSChess.Core.Model.Gameplay
 
         private void AddMove(List<Move> moves, Position newPosition)
         {
+            Piece captureVictim = null;
+            if (this.Board.Squares[newPosition.ToString()].IsOccupied)
+            {
+                captureVictim = this.Board.Squares[newPosition.ToString()].OccupyingPiece;
+            }
             moves.Add(new Move
             {
                 MovingPiece = this,
                 StartPosition = this.Square,
-                EndPosition = newPosition
+                EndPosition = newPosition,
+                CapturedPiece = captureVictim
             });
         }
 
