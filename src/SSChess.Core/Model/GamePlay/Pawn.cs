@@ -28,42 +28,32 @@ namespace SSChess.Core.Model.Gameplay
 
             if (!HasMoved() && !Board.Squares[forwardTwo.ToString()].IsOccupied && !isForwardBlocked)
             {
-                moves.Add(new Move 
-                { 
-                    MovingPiece = this, 
-                    StartPosition = this.Square, 
-                    EndPosition = forwardTwo 
-                });
+                AddMove(moves, forwardTwo);
             }
             if (!isForwardBlocked)
             {
-                moves.Add(new Move
-                {
-                    MovingPiece = this,
-                    StartPosition = this.Square,
-                    EndPosition = forwardOne
-                });
+                AddMove(moves, forwardOne);
             }
             if (IsCaptureAvailable(captureLeft))
             {
-                moves.Add(new Move
-                {
-                    MovingPiece = this,
-                    StartPosition = this.Square,
-                    EndPosition = captureLeft
-                });
+                AddMove(moves, captureLeft);
             }
             if (IsCaptureAvailable(captureRight))
             {
-                moves.Add(new Move
-                {
-                    MovingPiece = this,
-                    StartPosition = this.Square,
-                    EndPosition = captureRight
-                });
+                AddMove(moves, captureRight);
             }
            
             return moves.AsEnumerable();
+        }
+
+        private void AddMove(List<Move> moves, Position newPosition)
+        {
+            moves.Add(new Move
+            {
+                MovingPiece = this,
+                StartPosition = this.Square,
+                EndPosition = newPosition
+            });
         }
 
         private bool IsCaptureAvailable(Position capturePosition)
