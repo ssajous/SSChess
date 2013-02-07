@@ -14,5 +14,10 @@ namespace SSChess.Core.Model.Gameplay
         {
             return BishopValue;
         }
+
+        protected override IEnumerable<Move> GetAvailableMoves()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

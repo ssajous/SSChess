@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,5 +44,39 @@ namespace SSChess.Core.Model.Gameplay
         public const string BLACK_DARK_BISHOP = "f8";
         public const string BLACK_G_KNIGHT = "g8";
         public const string BLACK_H_ROOK = "h8";
+
+        public static IReadOnlyList<string> WhitePawnStartPositions
+        {
+            get
+            {
+                return new List<string> {
+                    WHITE_A_PAWN,
+                    WHITE_B_PAWN,
+                    WHITE_C_PAWN,
+                    WHITE_D_PAWN,
+                    WHITE_E_PAWN,
+                    WHITE_F_PAWN,
+                    WHITE_G_PAWN,
+                    WHITE_H_PAWN
+                }.AsReadOnly();
+            }
+        }
+
+        public static IReadOnlyList<string> BlackPawnStartPositions
+        {
+            get
+            {
+                return new List<string> {
+                    BLACK_A_PAWN,
+                    BLACK_B_PAWN,
+                    BLACK_C_PAWN,
+                    BLACK_D_PAWN,
+                    BLACK_E_PAWN,
+                    BLACK_F_PAWN,
+                    BLACK_G_PAWN,
+                    BLACK_H_PAWN
+                }.AsReadOnly();
+            }
+        }
     }
 }

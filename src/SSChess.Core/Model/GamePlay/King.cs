@@ -13,5 +13,10 @@ namespace SSChess.Core.Model.Gameplay
         {
             return 0;
         }
+
+        protected override IEnumerable<Move> GetAvailableMoves()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
