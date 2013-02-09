@@ -17,7 +17,32 @@ namespace SSChess.Core.Model.Gameplay
 
         protected override IEnumerable<Move> GetAvailableMoves()
         {
-            throw new NotImplementedException();
+            List<Move> moves = new List<Move>();
+
+            List<Position> targetSquares = this.Square.GetLMovePositions();
+            targetSquares.ForEach(square =>
+            {
+                ChessSquare boardTarget = this.Board.Squares[square.ToString()];
+                if (!boardTarget.IsOccupied)
+                {
+                    moves.Add(new Move 
+                    { 
+                        StartPosition = this.Square, 
+                        EndPosition = square 
+                    });
+                }
+                else if (boardTarget.OccupyingPiece.Color != this.Color) // enemy occupation
+                {
+                    moves.Add(new Move
+                    {
+                        StartPosition = this.Square,
+                        EndPosition = square,
+                        CapturedPiece = boardTarget.OccupyingPiece
+                    });
+                }
+            });
+
+            return moves.AsEnumerable();
         }
     }
 }
