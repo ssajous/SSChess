@@ -38,7 +38,7 @@ namespace SSChess.Core.Tests.Model.Gameplay
         }
 
         [Test]
-        public void AvailableMove_Surrounded_By_Same_Color_Should_Have_No_Moves()
+        public void AvailableMoves_Surrounded_By_Same_Color_Should_Have_No_Moves()
         {
             var board = new Board();
             board.SetupStartingPieces();
@@ -50,7 +50,7 @@ namespace SSChess.Core.Tests.Model.Gameplay
         }
 
         [Test]
-        public void AvailableMove_File_Should_Be_Open_Until_Capture()
+        public void AvailableMoves_File_Should_Be_Open_Until_Capture()
         {
             var board = new Board();
             var victim = new Pawn { Color = ChessColor.Black };
@@ -70,7 +70,7 @@ namespace SSChess.Core.Tests.Model.Gameplay
         }
 
         [Test]
-        public void AvailableMove_Rank_Should_Be_Open_Until_Capture()
+        public void AvailableMoves_Rank_Should_Be_Open_Until_Capture()
         {
             var board = new Board();
             var victim = new Pawn { Color = ChessColor.Black };
