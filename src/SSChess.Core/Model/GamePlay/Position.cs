@@ -302,9 +302,18 @@ namespace SSChess.Core.Model.Gameplay
             return this.ToString().GetHashCode();
         }
 
+        /// <summary>
+        /// Calculates the Chebyshev distance between the current position and 
+        /// target position
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public int DistanceFrom(Position target)
         {
-            throw new NotImplementedException();
+            int rankDistance = Math.Abs(target.Rank - this.Rank);
+            int fileDistance = Math.Abs(target.File.Index - this.File.Index);
+
+            return rankDistance > fileDistance ? rankDistance : fileDistance;
         }
     }
 }
