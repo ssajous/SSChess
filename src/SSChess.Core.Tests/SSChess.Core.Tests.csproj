@@ -48,15 +48,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BoardTests.cs" />
-    <Compile Include="GameTests.cs" />
-    <Compile Include="MoveTests.cs" />
-    <Compile Include="PieceTests.cs" />
-    <Compile Include="PlayerTests.cs" />
+    <Compile Include="Model\Gameplay\BishopTests.cs" />
+    <Compile Include="Model\Gameplay\BoardTests.cs" />
+    <Compile Include="Model\Gameplay\BoardFileTests.cs" />
+    <Compile Include="Model\Gameplay\ChessSquareTests.cs" />
+    <Compile Include="Model\Gameplay\GameTests.cs" />
+    <Compile Include="Model\Gameplay\KingTests.cs" />
+    <Compile Include="Model\Gameplay\KnightTests.cs" />
+    <Compile Include="Model\Gameplay\MoveTests.cs" />
+    <Compile Include="Model\Gameplay\PawnTests.cs" />
+    <Compile Include="Model\Gameplay\PieceTests.cs" />
+    <Compile Include="Model\Gameplay\PlayerTests.cs" />
+    <Compile Include="Model\Gameplay\PositionTests.cs" />
+    <Compile Include="Model\Gameplay\QueenTests.cs" />
+    <Compile Include="Model\Gameplay\RookTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SSChess.Core\SSChess.Core.csproj">
+      <Project>{4ec5f0d0-19c7-41d7-85c6-aeafd13334ba}</Project>
+      <Name>SSChess.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
