@@ -17,7 +17,11 @@ namespace SSChess.Core.Model.Gameplay
 
         protected override IEnumerable<Move> GetAvailableMoves()
         {
-            throw new NotImplementedException();
+            List<Move> moves = new List<Move>();
+            List<Position> filePositions = this.Square.GetCurrentFilePositions();
+            List<Position> rankPositions = this.Square.GetCurrentRankPositions();
+
+            return moves.AsEnumerable();
         }
     }
 }
