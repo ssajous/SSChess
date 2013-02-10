@@ -301,5 +301,10 @@ namespace SSChess.Core.Model.Gameplay
         {
             return this.ToString().GetHashCode();
         }
+
+        public int DistanceFrom(Position target)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
