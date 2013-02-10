@@ -384,5 +384,77 @@ namespace SSChess.Core.Tests.Model.Gameplay
 
             sut.GetHashCode().Should().Be("a1".GetHashCode());
         }
+
+        [Test]
+        public void DistanceFrom_Adjacent_Same_File_Should_Be_1()
+        {
+            var sut = InitializeSut();
+            sut.Rank = 1;
+            sut.File = new BoardFile('a');
+            var target = new Position("a2");
+
+            var result = sut.DistanceFrom(target);
+            result.Should().Be(1);
+        }
+
+        [Test]
+        public void DistanceFrom_Adjacent_Same_Rank_Should_Be_1()
+        {
+            var sut = InitializeSut();
+            sut.Rank = 1;
+            sut.File = new BoardFile('a');
+            var target = new Position("b1");
+
+            var result = sut.DistanceFrom(target);
+            result.Should().Be(1);
+        }
+
+        [Test]
+        public void DistanceFrom_Adjacent_On_Diagonal_Should_Be_1()
+        {
+            var sut = InitializeSut();
+            sut.Rank = 1;
+            sut.File = new BoardFile('a');
+            var target = new Position("b2");
+
+            var result = sut.DistanceFrom(target);
+            result.Should().Be(1);
+        }
+
+        [Test]
+        public void DistanceFrom_Far_Side_Same_File_Should_Be_7()
+        {
+            var sut = InitializeSut();
+            sut.Rank = 1;
+            sut.File = new BoardFile('a');
+            var target = new Position("a8");
+
+            var result = sut.DistanceFrom(target);
+            result.Should().Be(7);
+        }
+
+        [Test]
+        public void DistanceFrom_Far_Side_Same_Rank_Should_Be_7()
+        {
+            var sut = InitializeSut();
+            sut.Rank = 1;
+            sut.File = new BoardFile('a');
+            var target = new Position("h1");
+
+            var result = sut.DistanceFrom(target);
+            result.Should().Be(7);
+        }
+
+        [Test]
+        public void DistanceFrom_Far_Side_Diagonal_Should_Be_7()
+        {
+            var sut = InitializeSut();
+            sut.Rank = 1;
+            sut.File = new BoardFile('a');
+            var target = new Position("h8");
+
+            var result = sut.DistanceFrom(target);
+            result.Should().Be(7);
+        }
     }
 }
