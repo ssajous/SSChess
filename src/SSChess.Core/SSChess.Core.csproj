@@ -55,6 +55,7 @@
     <Compile Include="Model\Gameplay\Position.cs" />
     <Compile Include="Model\Gameplay\Queen.cs" />
     <Compile Include="Model\Gameplay\Rook.cs" />
+    <Compile Include="Model\Gameplay\SlideMovingPiece.cs" />
     <Compile Include="Model\Gameplay\StartingPositions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

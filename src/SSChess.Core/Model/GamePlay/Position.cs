@@ -110,9 +110,10 @@ namespace SSChess.Core.Model.Gameplay
         public List<Position> GetCurrentRankPositions()
         {
             List<Position> positions = new List<Position>();
-            for (int i = MinRank; i <= MaxRank; i++)
+
+            for (BoardFile iter = new BoardFile(BoardFile.MinIndex); iter != null; iter = iter.NextFile())
             {
-                positions.Add(new Position(i, File));
+                positions.Add(new Position(Rank, iter));
             }
             return positions;
         }
@@ -125,10 +126,9 @@ namespace SSChess.Core.Model.Gameplay
         public List<Position> GetCurrentFilePositions()
         {
             List<Position> positions = new List<Position>();
-
-            for (BoardFile iter = new BoardFile(BoardFile.MinIndex); iter != null; iter = iter.NextFile())
+            for (int i = MinRank; i <= MaxRank; i++)
             {
-                positions.Add(new Position(Rank, iter));
+                positions.Add(new Position(i, File));
             }
             return positions;
         }
