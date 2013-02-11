@@ -164,7 +164,13 @@ namespace SSChess.Core.Tests.Model.Gameplay
         [Test]
         public void AvailableMoves_Should_Not_Be_Blocked_By_Other_Pieces()
         {
-            Assert.Fail();
+            var board = new Board();
+            board.SetupStartingPieces();
+
+            var sut = board.Pieces.Where(piece => piece.Square.ToString() == "b1" && piece.GetType() == typeof(Knight)).FirstOrDefault() as Knight;
+            var result = sut.AvailableMoves;
+
+            result.Should().NotBeEmpty();
         }
     }
 }
