@@ -48,6 +48,30 @@ namespace SSChess.Core.Model.Gameplay
             return moves;
         }
 
+
+        protected virtual List<Move> AddDiagonalSlidingMoves()
+        {
+            List<Move> moves = new List<Move>();
+
+            List<Position> diagonalPositions = this.Square.GetCurrentDiagonalPositions();
+
+            IEnumerable<Position> northEast = diagonalPositions.Where(pos => pos.File.Index > this.Square.File.Index && pos.Rank > this.Square.Rank)
+                .OrderBy(pos => pos.DistanceFrom(this.Square));
+            IEnumerable<Position> northWest = diagonalPositions.Where(pos => pos.File.Index < this.Square.File.Index && pos.Rank > this.Square.Rank)
+                .OrderBy(pos => pos.DistanceFrom(this.Square));
+            IEnumerable<Position> southEast = diagonalPositions.Where(pos => pos.File.Index > this.Square.File.Index && pos.Rank < this.Square.Rank)
+                .OrderBy(pos => pos.DistanceFrom(this.Square));
+            IEnumerable<Position> southWest = diagonalPositions.Where(pos => pos.File.Index < this.Square.File.Index && pos.Rank < this.Square.Rank)
+                .OrderBy(pos => pos.DistanceFrom(this.Square));
+
+            AddAvailableMoves(northEast, moves);
+            AddAvailableMoves(northWest, moves);
+            AddAvailableMoves(southEast, moves);
+            AddAvailableMoves(southWest, moves);
+
+            return moves;
+        }
+
         /// <summary>
         /// Adds available moves from a segment of positions
         /// </summary>
@@ -83,5 +107,7 @@ namespace SSChess.Core.Model.Gameplay
                 }
             }
         }
+
+        
     }
 }

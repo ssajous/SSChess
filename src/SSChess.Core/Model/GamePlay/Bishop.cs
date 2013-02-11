@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SSChess.Core.Model.Gameplay
 {
-    public class Bishop : Piece
+    public class Bishop : SlideMovingPiece
     {
         private const int BishopValue = 3;
 
@@ -17,7 +17,9 @@ namespace SSChess.Core.Model.Gameplay
 
         protected override IEnumerable<Move> GetAvailableMoves()
         {
-            throw new NotImplementedException();
+            List<Move> moves = base.AddDiagonalSlidingMoves();
+
+            return moves.AsEnumerable();
         }
     }
 }
